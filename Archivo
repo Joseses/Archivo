@@ -6,23 +6,19 @@
 
 import java.io.*;
 
-public class Archivo 
-{
-  private RandomAccessFile raf = null;
+public class Archivo {
+	private RandomAccessFile raf = null;
   
-  
-  public Archivo( RandomAccessFile raf )
-  {
-      this.raf = raf;
-	}
+	public Archivo( RandomAccessFile raf ){
+		this.raf = raf;
+  	}
   
   /*-----------------------------------------------------------------
   / inserta un registro al inicio del archivo
   /-----------------------------------------------------------------*/
     
-	public void insertar( Registro registro ) throws IOException 
-	{
-      insertarEn( 0, registro );
+	public void insertar( Registro registro ) throws IOException {
+		insertarEn( 0, registro );
 	}
     
     /*-----------------------------------------------------------------
