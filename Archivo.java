@@ -2,6 +2,7 @@
 /  clase Archivo
 /
 /  autor: Dr. JosŽ Luis Zechinelli Martini
+/	Buscando cosas....
 /******************************************************************/
 
 import java.io.*;
