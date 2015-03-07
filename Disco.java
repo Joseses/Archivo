@@ -37,23 +37,24 @@ public class Disco{
 			
 			Scanner sc = new Scanner(System.in);
 			if(option == 1){
-				String suc;
-				int num;
-				String nom;
-				double sal;
 				System.out.println("--------------------------------------------------------------");
 				System.out.print("Introduzca el nombre de la sucursal: ");
-				suc = sc.next();
+				String suc = sc.nextLine();
 				System.out.print("Introduzca el número de cuenta: ");
-				num = sc.nextInt();
+				int num = sc.nextInt();
+				sc.nextLine();
 				System.out.print("Introduzca el nombre del titular: ");
-				nom = sc.next();
+				String nom = sc.nextLine();
 				System.out.print("Introduzca la cantidad de la cuenta: ");
-				sal = sc.nextDouble();
+				double sal = sc.nextDouble();
 				registro = new Registro_Fijo(suc, num, nom, sal);
 				archivo.insertar(registro);
 			}else if(option == 2){
 				System.out.println("--------------------------------------------------------------");
+				archivo.imprimirRegistros();
+				System.out.print("Introduzca el numero de registro a eliminar: ");
+				int num = sc.nextInt();
+				archivo.eliminar(num);
 			}else if(option == 3){
 				System.out.println("--------------------------------------------------------------");
 				archivo.imprimirRegistros();

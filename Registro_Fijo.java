@@ -54,6 +54,8 @@ public class Registro_Fijo {
 	public String getNombre()   { return new String( nombre ); }
     
 	public double getSaldo()    { return saldo; }
+	
+	public String getEliminado() { return new String( eliminado ); }
     
     /*-----------------------------------------------------------------
     / longitud en bytes de un registro
@@ -91,6 +93,12 @@ public class Registro_Fijo {
 	}
 	
 	public void erase( RandomAccessFile raf) throws IOException {
+		String temp = "y";
+		eliminado[0] = temp.getBytes()[0]; //Escribimos "y" para marcar el registro como eliminado
+		raf.write( sucursal );
+		raf.writeInt( numero );
+		raf.write( nombre );
+		raf.writeDouble( saldo );
 		raf.write( eliminado );
 	}
 }
