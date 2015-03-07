@@ -26,7 +26,7 @@ public class Disco{
 							"================ Opción:");
 	}
     
-    public static void setMenu(int option){
+	public static void setMenu(int option){
 		if(option == 1){
 			System.out.println("--------------------------------------------------------------");
 		}else if(option == 2){
