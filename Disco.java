@@ -2,23 +2,19 @@ import java.util.Scanner;
 
 public class Disco
 {
-    public static void main(String[] Manuelesgay)
-    {
+    public static void main(String[] Betoesputo){
         Scanner sc = new Scanner(System.in);
         int option;
-        try { //Previene cualquier excepción, cuando el usuario escribe cualquier cosa menos un número.
-			do
-			{
+        try { //Previene cuando el usuario escribe cualquier cosa menos un número.
+			do{
 				
 				getMenu();
 				option = sc.nextInt();
 				setMenu(option);
-				
 			}while(option != 4);
         } catch (Exception e) {
-				System.out.println("Caracter inválido");
+			System.out.println("Caracter inválido");
 		}
-        
     }
     
     private static void getMenu()
