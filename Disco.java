@@ -6,15 +6,18 @@ public class Disco
     {
         Scanner sc = new Scanner(System.in);
         int option;
-        
-        do
-        {
-            
-            getMenu();
-            option = sc.nextInt();
-            setMenu(option);
-            
-        }while(option != 4);
+        try { //Previene cualquier excepción, cuando el usuario escribe cualquier cosa menos un número.
+			do
+			{
+				
+				getMenu();
+				option = sc.nextInt();
+				setMenu(option);
+				
+			}while(option != 4);
+        } catch (Exception e) {
+				System.out.println("Caracter inválido");
+		}
         
     }
     
