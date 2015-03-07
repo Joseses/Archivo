@@ -13,6 +13,7 @@ public class Registro_Fijo {
 	private int numero = 0;
 	private byte[] nombre = new byte[20];
 	private double saldo = 0;
+	private byte[] eliminado = new byte[1];
     
     /*-----------------------------------------------------------------
     / constructores
@@ -27,22 +28,23 @@ public class Registro_Fijo {
         
 		if( nomSucursal.length() > 20 || nomCliente.length() > 20 ) {
             
-			System.out.println( "ATENCION: Sucursal o nombre con ms de 20 caracteres" );
+			System.out.println( "ATENCION: Sucursal o nombre con más de 20 caracteres" );
         }
         
-		for( int i = 0; i < 20 && i < nomSucursal.getBytes().length; i++ )
+		for( int i = 0; i < 20 && i < nomSucursal.getBytes().length; i++ ){
 			sucursal[i] = nomSucursal.getBytes()[i];
-        
+		}
 		numero = numCuenta;
-        
-		for( int i = 0; i < 20 && i < nomCliente.getBytes().length; i++ )
+		for( int i = 0; i < 20 && i < nomCliente.getBytes().length; i++ ){
 			nombre[i] = nomCliente.getBytes()[i];
-        
+		}
+		String temp = "n";
+		eliminado[0] = temp.getBytes()[0];
 		saldo = deposito;
 	}
     
     /*-----------------------------------------------------------------
-    / mtodos getters
+    / métodos getters
     /-----------------------------------------------------------------*/
     
 	public String getSucursal() { return new String( sucursal ); }
@@ -62,11 +64,12 @@ public class Registro_Fijo {
 		return sucursal.length +
                Integer.SIZE / 8 +
                nombre.length +
-               Double.SIZE / 8;
+               Double.SIZE / 8 +
+               eliminado.length;
 	}
     
     /*-----------------------------------------------------------------
-    / mtodos para escribir y leer un registro
+    / métodos para escribir y leer un registro
     /-----------------------------------------------------------------*/
     
 	public void read( RandomAccessFile raf ) throws IOException {
@@ -75,6 +78,7 @@ public class Registro_Fijo {
 		numero = raf.readInt();
 		raf.read( nombre );
 		saldo = raf.readDouble();
+		raf.read( eliminado );
 	}
     
 	public void write( RandomAccessFile raf ) throws IOException {
@@ -83,5 +87,10 @@ public class Registro_Fijo {
 		raf.writeInt( numero );
 		raf.write( nombre );
 		raf.writeDouble( saldo );
-	}	
+		raf.write( eliminado );
+	}
+	
+	public void erase( RandomAccessFile raf) throws IOException {
+		raf.write( eliminado );
+	}
 }

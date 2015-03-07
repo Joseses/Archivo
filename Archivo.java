@@ -18,7 +18,7 @@ public class Archivo {
   / inserta un registro al inicio del archivo
   /-----------------------------------------------------------------*/
     
-	public void insertar( Registro registro ) throws IOException {
+	public void insertar( Registro_Fijo registro ) throws IOException {
 		insertarEn( 0, registro );
 	}
     
@@ -28,7 +28,7 @@ public class Archivo {
     
 	public void imprimirRegistros() throws IOException {
         
-		Registro registro = new Registro();
+		Registro_Fijo registro = new Registro_Fijo();
 		int length = (int) (raf.length() / registro.length());
         
 		System.out.println( "Nœmero de registros: " + length );
@@ -49,13 +49,13 @@ public class Archivo {
     / desplaza registros para insertar un registro en la posici—n p
     /-----------------------------------------------------------------*/
     
-	private void insertarEn( int p, Registro registro ) throws IOException {
+	private void insertarEn( int p, Registro_Fijo registro ) throws IOException {
         
 		int n = (int) (raf.length() / registro.length());
         
 		for( int i = n-1; i >= p; i -- ) {    // desplazamiento de registros
             
-			Registro temp = new Registro();
+			Registro_Fijo temp = new Registro_Fijo();
             
 			raf.seek( i * temp.length() );
 			temp.read( raf );
