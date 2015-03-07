@@ -1,25 +1,24 @@
 import java.util.Scanner;
 
-public class Disco
-{
-    public static void main(String[] Betoesputo){
-        Scanner sc = new Scanner(System.in);
-        int option;
-        try { //Previene cuando el usuario escribe cualquier cosa menos un número.
+public class Disco{
+    
+	public static void main(String[] Betoesputo){
+		Scanner sc = new Scanner(System.in);
+		int option;
+		try { //Previene cuando el usuario escribe cualquier cosa menos un número.
 			do{
 				
 				getMenu();
 				option = sc.nextInt();
 				setMenu(option);
 			}while(option != 4);
-        } catch (Exception e) {
+		} catch (Exception e) {
 			System.out.println("Caracter inválido");
 		}
     }
     
-    private static void getMenu()
-    {
-        System.out.print("Qué desea hacer, con el numero correspondiente, elija una opcion del menu: "+ "\n" +
+    private static void getMenu(){
+		System.out.print("Qué desea hacer, con el numero correspondiente, elija una opcion del menu: "+ "\n" +
                             "1) Crear un Registro"+ "\n"+
                             "2) Eliminar un Registro"+"\n"+
                             "3) Imprimir un Registro"+"\n"+
@@ -27,34 +26,19 @@ public class Disco
                             "================ Opción:");
     }
     
-    public static void setMenu(int option)
-    {
-        if(option == 1)
-        {
+    public static void setMenu(int option){
+        if(option == 1){
             System.out.println("--------------------------------------------------------------");
-            
-        }
-        else if(option == 2)
-        {
+        }else if(option == 2){
             System.out.println("--------------------------------------------------------------");
-            
-        }
-        else if(option == 3)
-        {
-            System.out.println("--------------------------------------------------------------");
-            
-        }
-        else if(option == 4)
-        {
+        }else if(option == 3){
+			System.out.println("--------------------------------------------------------------");
+		}else if(option == 4){
             System.out.println("--------------------------------------------------------------");
             System.out.println("Salir, Adios");
-        }
-        else
-        {
+        }else{
             System.out.println("--------------------------------------------------------------");
             System.out.println("Error, Opción invalida");
         }
     }
-   
-    
 }
