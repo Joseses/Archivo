@@ -7,7 +7,7 @@
 import java.io.*;
 import java.lang.*;
 
-public class Registro {
+public class Registro_Fijo {
     
 	private byte[] sucursal = new byte[20];
 	private int numero = 0;
@@ -18,9 +18,9 @@ public class Registro {
     / constructores
     /-----------------------------------------------------------------*/
     
-	public Registro() {}
+	public Registro_Fijo() {}
     
-	public Registro( String nomSucursal, int numCuenta,
+	public Registro_Fijo( String nomSucursal, int numCuenta,
                      String nomCliente, double deposito )
 	{
 		byte[] chars;
