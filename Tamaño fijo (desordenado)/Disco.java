@@ -38,7 +38,7 @@ public class Disco{
 		System.out.print("Con el numero correspondiente, elija una opcion del menu: "+ "\n" +
 							"1) Crear un Registro"+ "\n"+
 							"2) Eliminar un Registro"+"\n"+
-							"3) Imprimir un Registro"+"\n"+
+							"3) Imprimir todos los Registros"+"\n"+
 							"4) Salir del programa"+"\n"+
 							"====== Opción:");
 	}
