@@ -6,11 +6,28 @@ public class Disco{
 	public static void main(String[] Betoesputo){
 		Scanner sc = new Scanner(System.in);
 		int option;
+		int tec;
+		
+		try {
+			do{
+				System.out.print("Qué técnica desea utilizar para eliminar"+"\n"+
+								"1) Marcar y Abandonar"+"\n"+
+								"2) Marcar y Utilizar despues"+"\n"+
+								"====== Opción: ");
+				tec = sc.nextInt();
+				if(tec<1 && tec>2)
+					System.out.println("Opción Invalida");
+				System.out.println("------------------------------------------------------");
+			}while(tec<1 && tec>2)
+		} catch (Exeption e){
+			System.out.println("Caracter inválido");
+		}
+		
 		try { //Previene cuando el usuario escribe cualquier cosa menos un número.
 			do{
 				showMenu();
 				option = sc.nextInt();
-				setMenu(option);
+				setMenu(option, tec);
 			}while(option != 4);
 		} catch (Exception e) {
 			System.out.println("Caracter inválido");
@@ -26,7 +43,7 @@ public class Disco{
 							"====== Opción:");
 	}
     
-	public static void setMenu(int option){
+	public static void setMenu(int option, int tec){
 		try {
             
 			File file = new File( "Depositos.Info" );
@@ -51,10 +68,14 @@ public class Disco{
 				archivo.insertar(registro);
 			}else if(option == 2){
 				System.out.println("--------------------------------------------------------------");
+				int opt = sc.next.int();
 				archivo.imprimirRegistros();
 				System.out.print("Introduzca el numero de registro a eliminar: ");
 				int num = sc.nextInt();
-				archivo.eliminar(num);
+				if(tec == 2)
+					archivo.eliminar(num);
+				else
+					//archivo.eliminar2(num);
 			}else if(option == 3){
 				System.out.println("--------------------------------------------------------------");
 				archivo.imprimirRegistros();
