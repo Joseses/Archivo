@@ -9,7 +9,6 @@ import java.io.*;
 
 public class Archivo {
 	private RandomAccessFile raf = null;
-	private static int eliminados = 0;
   
 	public Archivo( RandomAccessFile raf ){
 		this.raf = raf;
@@ -25,6 +24,7 @@ public class Archivo {
     
     /*-----------------------------------------------------------------
     / presenta los registros del archivo
+    / si hay un registro marcado lo ignora.
     /-----------------------------------------------------------------*/
     
 	public void imprimirRegistros() throws IOException {
@@ -53,7 +53,8 @@ public class Archivo {
 	}
     
     /*-----------------------------------------------------------------
-    / desplaza registros para insertar un registro en la posición p
+    / Revisa si hay un registro marcado, y si así es, ahí inserta el registro o
+    / en su defecto, desplaza registros para insertar un registro en la posición p
     /-----------------------------------------------------------------*/
     
 	private void insertarEn( int p, Registro_Fijo registro ) throws IOException {
