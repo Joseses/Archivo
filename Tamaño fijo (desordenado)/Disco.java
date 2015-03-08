@@ -3,7 +3,7 @@ import java.io.*;
 //Testing
 public class Disco{
 	
-	public static void main(String[] Betoesputo){
+	public static void main(String[] Joseses){
 		Scanner sc = new Scanner(System.in);
 		int option;
 		int tec = 0;
@@ -74,7 +74,7 @@ public class Disco{
 				if(tec == 2)
 					archivo.eliminar(num);
 				else
-					//archivo.eliminar2(num);
+					;//archivo.eliminar2(num);
 			}else if(option == 3){
 				System.out.println("--------------------------------------------------------------");
 				archivo.imprimirRegistros();
