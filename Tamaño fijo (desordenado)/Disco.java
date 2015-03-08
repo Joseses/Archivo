@@ -6,7 +6,7 @@ public class Disco{
 	public static void main(String[] Betoesputo){
 		Scanner sc = new Scanner(System.in);
 		int option;
-		int tec;
+		int tec = 0;
 		
 		try {
 			do{
@@ -18,8 +18,8 @@ public class Disco{
 				if(tec<1 && tec>2)
 					System.out.println("Opción Invalida");
 				System.out.println("------------------------------------------------------");
-			}while(tec<1 && tec>2)
-		} catch (Exeption e){
+			}while(tec<1 && tec>2);
+		} catch (Exception e){
 			System.out.println("Caracter inválido");
 		}
 		
@@ -68,7 +68,6 @@ public class Disco{
 				archivo.insertar(registro);
 			}else if(option == 2){
 				System.out.println("--------------------------------------------------------------");
-				int opt = sc.next.int();
 				archivo.imprimirRegistros();
 				System.out.print("Introduzca el numero de registro a eliminar: ");
 				int num = sc.nextInt();
