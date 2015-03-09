@@ -75,8 +75,8 @@ public class Archivo {
 			}
 		}
 		
-        if(hayEliminados) {
-			System.out.println("Efectovamente hay registros eliminados!");
+		if(hayEliminados) {
+			System.out.println("Efectivamente hay registros eliminados!");
 			raf.seek( x * registro.length() );   // inserta el nuevo registro
 			registro.write( raf );
 		} else {
