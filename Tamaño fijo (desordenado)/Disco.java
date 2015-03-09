@@ -15,7 +15,7 @@ public class Disco{
 								"2) Marcar y Utilizar despues"+"\n"+
 								"====== Opción: ");
 				tec = sc.nextInt();
-				if(tec< || tec>2)
+				if(tec<1 || tec>2)
 					System.out.println("Opción Invalida");
 				System.out.println("------------------------------------------------------");
 			}while(tec<1 || tec>2);
