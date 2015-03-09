@@ -91,8 +91,8 @@ public class Registro_Fijo {
 		raf.writeDouble( saldo );
 		raf.write( eliminado );
 	}
-	
-	public void erase( RandomAccessFile raf) throws IOException {
+	//Función para marcar registros...
+	public void mark( RandomAccessFile raf) throws IOException {
 		String temp = "y";
 		eliminado[0] = temp.getBytes()[0]; //Escribimos "y" para marcar el registro como eliminado
 		raf.write( sucursal );

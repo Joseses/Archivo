@@ -3,9 +3,10 @@ import java.io.*;
 //Testing
 public class Disco{
 	
-	public static void main(String[] Betoesputo){
+	public static void main(String[] Joseses){
 		Scanner sc = new Scanner(System.in);
 		int option;
+		
 		try { //Previene cuando el usuario escribe cualquier cosa menos un número.
 			do{
 				showMenu();
@@ -21,7 +22,7 @@ public class Disco{
 		System.out.print("Con el numero correspondiente, elija una opcion del menu: "+ "\n" +
 							"1) Crear un Registro"+ "\n"+
 							"2) Eliminar un Registro"+"\n"+
-							"3) Imprimir un Registro"+"\n"+
+							"3) Imprimir todos los Registros"+"\n"+
 							"4) Salir del programa"+"\n"+
 							"====== Opción:");
 	}
