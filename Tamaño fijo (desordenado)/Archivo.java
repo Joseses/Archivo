@@ -99,6 +99,6 @@ public class Archivo {
 		Registro_Fijo temp = new Registro_Fijo();
 		int n = (int) (raf.length() / temp.length());
 		raf.seek( (p-1) * temp.length() );   // Marcamos el registro
-		temp.erase( raf );
+		temp.mark( raf );
 	}
 }
