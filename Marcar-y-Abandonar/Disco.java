@@ -61,8 +61,6 @@ public class Disco
 				archivo.imprimirRegistros();
 			}else if(option == 4){
 				System.out.println("--------------------------------------------------------------");
-				
-                                
 			}else if(option == 5){
 				System.out.println("--------------------------------------------------------------");
 				System.out.println("Salir, Adios");
