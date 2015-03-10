@@ -21,9 +21,10 @@ public class Disco
 		System.out.print("Con el numero correspondiente, elija una opcion del menu: "+ "\n" +
 							"1) Crear un Registro"+ "\n"+
 							"2) Eliminar un Registro"+"\n"+
-							"3) Imprimir todos los Registros"+"\n"+
-                                                        "4) Buscar un Registro"+"\n"+
-							"5) Salir del programa"+"\n"+
+							"3) Imprimir registros activos"+"\n"+
+							"4) Imprimir todos los registros (incluye los marcados)" + 
+							"\n" + "5) Buscar un Registro"+"\n"+
+							"6) Salir del programa"+"\n"+
 							"====== Opción:");
 	}
     
@@ -61,10 +62,13 @@ public class Disco
 				archivo.imprimirRegistros();
 			}else if(option == 4){
 				System.out.println("--------------------------------------------------------------");
-			}else if(option == 5){
+				archivo.imprimirTodo();
+			}else if(option == 6){
 				System.out.println("--------------------------------------------------------------");
 				System.out.println("Salir, Adios");
 				raf.close();
+			}else if (option == 5) {
+				
 			}else{
 				System.out.println("--------------------------------------------------------------");
 				System.out.println("Error, Opción invalida");

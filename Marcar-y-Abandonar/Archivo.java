@@ -42,22 +42,22 @@ public class Archivo
 		System.out.println("--------------------------------------------------------------");
 	}
 	
-	//~ public void imprimirRegistros() throws IOException {
-		//~ 
-		//~ Registro_Fijo registro = new Registro_Fijo();
-		//~ int length = (int) (raf.length() / registro.length());
-		//~ System.out.println( "Número de registros: " + length );
-		//~ raf.seek( 0 );
-		//~ for( int i = 0; i < length; i++ ) {
-			//~ 
-			//~ registro.read( raf );
-			//~ System.out.println( "( " + registro.getSucursal() + ", "
-                                     //~ + registro.getNumero() + ", "
-                                     //~ + registro.getNombre() + ", "
-                                     //~ + registro.getSaldo() + ", "
-                                     //~ + registro.getEliminado() + " )" );
-		//~ }
-	//~ }
+	public void imprimirTodo() throws IOException {
+		
+		Registro_Fijo registro = new Registro_Fijo();
+		int length = (int) (raf.length() / registro.length());
+		System.out.println( "Número de registros: " + length );
+		raf.seek( 0 );
+		for( int i = 0; i < length; i++ ) {
+			
+			registro.read( raf );
+			System.out.println( "( " + registro.getSucursal() + ", "
+                                     + registro.getNumero() + ", "
+                                     + registro.getNombre() + ", "
+                                     + registro.getSaldo() + ", "
+                                     + registro.getEliminado() + " )" );
+		}
+	}
     
     /*-----------------------------------------------------------------
     / desplaza registros para insertar un registro en la posición p
