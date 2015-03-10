@@ -42,7 +42,7 @@ public class Registro_Fijo
     
 	public String getSucursal() { return new String( sucursal ); }
     
-	public int getNumero()      { return this.numero; }
+	public int getNumero()      { return numero; }
     
 	public String getNombre()   { return new String( nombre ); }
     

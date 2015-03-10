@@ -1,9 +1,9 @@
 import java.util.Scanner;
 import java.io.*;
 
-public class Disco
-{
-   	public static void main(String[] Joseses){
+public class Disco {
+	
+	public static void main(String[] Joseses){
 		Scanner sc = new Scanner(System.in);
 		int option;
 		try { //Previene cuando el usuario escribe cualquier cosa menos un número.
@@ -11,9 +11,10 @@ public class Disco
 				showMenu();
 				option = sc.nextInt();
 				setMenu(option);
-			}while(option != 4);
+			}while(option != 6);
 		} catch (Exception e) {
 			System.out.println("Caracter inválido");
+			e.printStackTrace();
 		}
 	}
     
@@ -49,12 +50,13 @@ public class Disco
 				String nom = sc.nextLine();
 				System.out.print("Introduzca la cantidad de la cuenta: ");
 				double sal = sc.nextDouble();
+				sc.nextLine();
 				registro = new Registro_Fijo(suc, num, nom, sal);
 				archivo.insertar(registro);
 			}else if(option == 2){
 				System.out.println("--------------------------------------------------------------");
 				archivo.imprimirRegistros();
-				System.out.print("Introduzca el numero de registro a eliminar: ");
+				System.out.print("Introduzca el número de cuenta a eliminar: ");
 				int num = sc.nextInt();
 				archivo.eliminar(num);
 			}else if(option == 3){
