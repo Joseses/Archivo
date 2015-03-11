@@ -47,7 +47,6 @@ public class Archivo
 		int contel = 0;
 		Registro_Fijo registro = new Registro_Fijo();
 		int length = (int) (raf.length() / registro.length());
-		System.out.println( "Número de registros: " + length );
 		raf.seek( 0 );
 		System.out.printf("%-12s%-7s%-12s%-9s%s\n","Sucursal","Cuenta",
 							"Nombre", "Saldo", "¿Marcado?");
@@ -63,8 +62,10 @@ public class Archivo
 							registro.getNumero(),registro.getNombre().trim(), 
 							registro.getSaldo(), registro.getEliminado());
 		}
+		System.out.println("");
 		System.out.println( "Número de registros activos: " + (length-contel) );
 		System.out.println( "Número de registros eliminados: " + (contel) );
+		System.out.println( "Número de registros totales: " + length );
 		System.out.println("--------------------------------------------------------------");
 	}
     

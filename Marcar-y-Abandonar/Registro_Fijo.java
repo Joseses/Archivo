@@ -69,7 +69,7 @@ public class Registro_Fijo
     
 	public void read( RandomAccessFile raf ) throws IOException {
         
-        raf.read( eliminado );
+		raf.read( eliminado );
 		raf.read( sucursal );
 		numero = raf.readInt();
 		raf.read( nombre );
