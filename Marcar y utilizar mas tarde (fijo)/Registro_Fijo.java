@@ -76,29 +76,30 @@ public class Registro_Fijo {
     
 	public void read( RandomAccessFile raf ) throws IOException {
         
+		raf.read( eliminado );
 		raf.read( sucursal );
 		numero = raf.readInt();
 		raf.read( nombre );
 		saldo = raf.readDouble();
-		raf.read( eliminado );
 	}
     
 	public void write( RandomAccessFile raf ) throws IOException {
         
+		raf.write( eliminado );
 		raf.write( sucursal );
 		raf.writeInt( numero );
 		raf.write( nombre );
 		raf.writeDouble( saldo );
-		raf.write( eliminado );
 	}
 	//Función para marcar registros...
-	public void mark( RandomAccessFile raf) throws IOException {
+	public void erase( RandomAccessFile raf) throws IOException {
 		String temp = "y";
 		eliminado[0] = temp.getBytes()[0]; //Escribimos "y" para marcar el registro como eliminado
+		raf.write( eliminado );
 		raf.write( sucursal );
 		raf.writeInt( numero );
 		raf.write( nombre );
 		raf.writeDouble( saldo );
-		raf.write( eliminado );
+		System.out.println("[REGISTRO - erase] " + getEliminado());
 	}
 }

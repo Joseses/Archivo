@@ -53,12 +53,12 @@ public class Disco{
 			}else if(option == 2){
 				System.out.println("--------------------------------------------------------------");
 				archivo.imprimirRegistros();
-				System.out.print("Introduzca el numero de registro a eliminar: ");
+				System.out.print("Introduzca el numero de cuenta a eliminar: ");
 				int num = sc.nextInt();
 				archivo.eliminar(num);
 			}else if(option == 3){
 				System.out.println("--------------------------------------------------------------");
-				archivo.imprimirRegistros();
+				archivo.imprimirTodo();
 			}else if(option == 4){
 				System.out.println("--------------------------------------------------------------");
 				System.out.println("Salir, Adios");

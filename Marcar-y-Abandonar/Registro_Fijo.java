@@ -17,15 +17,13 @@ public class Registro_Fijo
 	public Registro_Fijo() {}
     
 	public Registro_Fijo( String nomSucursal, int numCuenta,
-                     String nomCliente, double deposito )
-	{
+                     String nomCliente, double deposito ){
 		byte[] chars;
         
 		if( nomSucursal.length() > 20 || nomCliente.length() > 20 ) {
-            
 			System.out.println( "ATENCION: Sucursal o nombre con más de 20 caracteres" );
-                }
-        
+		}
+		
 		for( int i = 0; i < 20 && i < nomSucursal.getBytes().length; i++ ){
 			sucursal[i] = nomSucursal.getBytes()[i];
 		}
@@ -59,9 +57,9 @@ public class Registro_Fijo
 	public int length() {
         
 		return sucursal.length +
-               Integer.SIZE / 8 +
+               (Integer.SIZE / 8) +
                nombre.length +
-               Double.SIZE / 8 +
+               (Double.SIZE / 8) +
                eliminado.length;
 	}
     
@@ -71,30 +69,31 @@ public class Registro_Fijo
     
 	public void read( RandomAccessFile raf ) throws IOException {
         
+		raf.read( eliminado );
 		raf.read( sucursal );
 		numero = raf.readInt();
 		raf.read( nombre );
 		saldo = raf.readDouble();
-		raf.read( eliminado );
 	}
     
 	public void write( RandomAccessFile raf ) throws IOException {
         
+        raf.write( eliminado );
 		raf.write( sucursal );
 		raf.writeInt( numero );
 		raf.write( nombre );
 		raf.writeDouble( saldo );
-		raf.write( eliminado );
 	}
 	
 	public void erase( RandomAccessFile raf) throws IOException {
 		String temp = "y";
 		eliminado[0] = temp.getBytes()[0]; //Escribimos "y" para marcar el registro como eliminado
+		raf.write( eliminado );
 		raf.write( sucursal );
 		raf.writeInt( numero );
 		raf.write( nombre );
 		raf.writeDouble( saldo );
-		raf.write( eliminado );
+		System.out.println("[REGISTRO - erase] " + getEliminado());
 	}
 
 }
