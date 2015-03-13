@@ -1,21 +1,14 @@
 import java.io.*;
 import java.lang.*;
 
-public class Registro_Cbytes
+
+public class Registro_Fijo 
 {
    private byte[] sucursal = new byte[20];
-   private Cuenta[] cuentas;   
-   private byte[] eliminado = new byte[1];
-   
-  public class Cuenta{
-    private int numero = 0;
-	  private byte[] nombre = new byte[20];
-	  private double saldo = 0;
-	  private byte[] eliminadoC = new byte[1];
-  } 
-  
-  
-    
+	private int numero = 0;
+	private byte[] nombre = new byte[20];
+	private double saldo = 0;
+	private byte[] eliminado = new byte[1];
     
     /*-----------------------------------------------------------------
     / constructores
@@ -23,7 +16,7 @@ public class Registro_Cbytes
     
 	public Registro_Fijo() {}
     
-	public Registro_Cbytes( String nomSucursal, int numCuenta,
+	public Registro_Fijo( String nomSucursal, int numCuenta,
                      String nomCliente, double deposito ){
 		byte[] chars;
         
