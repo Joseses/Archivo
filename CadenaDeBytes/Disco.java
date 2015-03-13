@@ -1,8 +1,8 @@
 import java.util.Scanner;
 import java.io.*;
 
-public class Disco
-{
+//Hola
+public class Disco{
    	public static void main(String[] Joseses){
 		Scanner sc = new Scanner(System.in);
 		int option;
