@@ -25,12 +25,7 @@ public class Archivo {
 		raf.seek( 0 );
 		for( int i = 0; i < length; i++ ){
 			registro.read( raf );
-			System.out.println("[ARCHIVO - existeRegistro] " + registro.getSucursal() + ". es igual a " 
-								+ sucursal1 + ". ?");
-			System.out.println(" '"+registro.getSucursal()+"' is '" + sucursal1 + "'");
-			if(registro.getSucursal().trim().equals(sucursal1)){
-				//System.out.println((i+1)+". " + "Registro marcado para eliminar");
-				System.out.println("[ARCHIVO - existeRegistro] Sí es igual...");
+			if(registro.getSucursal().trim().equals(sucursal1) && !registro.getEliminado().equals("y")){
 				existe = true;
 				i = length;
 			}
@@ -44,8 +39,7 @@ public class Archivo {
 		raf.seek( 0 );
 		for( int i = 0; i < 5; i++ ){
 			registro.read( raf );
-			if(registro.getSucursal().trim().equals(sucursal)){
-				//System.out.println((i+1)+". " + "Registro marcado para eliminar");
+			if(registro.getSucursal().trim().equals(sucursal) && !registro.getEliminado().equals("y")){
 				raf.seek(raf.getFilePointer()-(5*cuenta.length()));
 				i = length;
 				registro.crearCuenta(cuenta, raf);
@@ -94,12 +88,8 @@ public class Archivo {
 		Registro_Cbytes registro = new Registro_Cbytes();
 		int length = (int) (raf.length() / registro.length());
 		raf.seek( 0 );
-		System.out.println("[ARCHIVO - imprimirregistro] Actualmente el número de registros es: " + length);
-		System.out.println("[ARCHIVO - imprimirregistro] Tamaño de registro: " + registro.length());
 		
 		for( int i = 0; i < length; i++ ){
-			System.out.println("[ARCHIVO - imprimirregistro] Apuntador antes de leer siguiente registro: " 
-								+ raf.getFilePointer());
 			registro.read( raf );
 			if(registro.getEliminado().equals("y")){
 				//System.out.println((i+1)+". " + "Registro marcado para eliminar");
@@ -117,15 +107,9 @@ public class Archivo {
 		String texto = "";
 		Cuenta temp = new Cuenta();
 		raf.seek(raf.getFilePointer()-(5*temp.length()));
-		System.out.println("[ARCHIVO - infocuentas] El apuntador antes de entrar a for " + 
-							raf.getFilePointer());
-		System.out.println("[ARCHIVO - infocuentas] Tamaño de cuentas en total " + 
-							(5*temp.length()));
 			for(int i = 0; i<5;i++) {
 				if(temp!=null) {
 					try {
-						System.out.println("[ARCHIVO - infocuentas] El apuntador está en " + 
-						raf.getFilePointer());
 						temp.read(raf);
 						if(temp.getNumero()!=0 && temp.getSaldo()!=0 
 						&& !temp.getEliminado().equals("y")) {
@@ -154,7 +138,6 @@ public class Archivo {
 		int n = (int) (raf.length() / registro.length());
 		int x = 0;
 		boolean hayEliminados = false;
-		System.out.println("[ARCHIVO - insertarEn] Número de registros actuales: " + n);
 		Cuenta cuenta = new Cuenta();
 		
 		for(int i = 0; i<n; i++) {
@@ -165,26 +148,18 @@ public class Archivo {
 				x = i;
 				i = n;
 				hayEliminados = true;
-				System.out.println("Hay registros eliminados!");
 			}
 		}
 		
 		if(hayEliminados) {
-			System.out.println("Efectivamente hay registros eliminados!");
 			raf.seek( x * registro.length() );   // inserta el nuevo registro
 			registro.write( raf );
 		} else {
 			for( int i = n-1; i >= p; i -- ) {    // desplazamiento de registros
-				System.out.println("[ARCHIVO - insertarEn] Entrando a for con valor n: " + n);
 				Registro_Cbytes temp = new Registro_Cbytes();
-				System.out.println("[ARCHIVO - insertarEn] Apuntador antes de primera lectura " + raf.getFilePointer());
 				raf.seek( i * temp.length() );
 				temp.read( raf );
-				//~ raf.seek(raf.getFilePointer()+cuenta.length());
-				
-				System.out.println("[ARCHIVO - insertarEn] Apuntador antes de movimiento " + raf.getFilePointer());
 				raf.seek( (i+1) * temp.length() );
-				System.out.println("[ARCHIVO - insertarEn] Apuntador antes de escritura " + raf.getFilePointer());
 				temp.write( raf );
 			}
 			raf.seek( p * registro.length() );   // inserta el nuevo registro
@@ -193,24 +168,44 @@ public class Archivo {
 	}
 	
 	public void eliminar(String suc) throws IOException {    //Marcar y usar despues
-		System.out.println("[ARCHIVO - eliminar] se inicia el método con el argumento: " + suc);
 		Registro_Cbytes temp = new Registro_Cbytes();
 		int n = (int) (raf.length() / temp.length());
-		System.out.println("[ARCHIVO - eliminar] n es: " + n);
 		raf.seek(0);
 		for(int i =0; i<n;i++) {
 			Registro_Cbytes temp1 = new Registro_Cbytes();
 			raf.seek(i*temp.length());
 			temp1.read(raf);
-			System.out.println("[ARCHIVO - eliminar] la sucursal es: " 
-								+ temp1.getSucursal() + " y buscamos " + suc);
 			if(temp1.getSucursal().trim().equals(suc) && !temp1.getEliminado().equals("y")) {
 				raf.seek(i*temp1.length());
-				System.out.println("[ARCHIVO - eliminar] entramos en la condición con la sucursal "
-									+ temp1.getSucursal());
 				temp1.erase(raf);
 				i = n;
 			}
 		}
+	}
+	
+	public boolean eliminarCuenta(String suc, int cuenta) throws IOException {    //Marcar y usar despues
+		Registro_Cbytes temp = new Registro_Cbytes();
+		int n = (int) (raf.length() / temp.length());
+		boolean estaEliminado = false;
+		raf.seek(0);
+		for(int i =0; i<n;i++) {
+			Registro_Cbytes temp1 = new Registro_Cbytes();
+			raf.seek(i*temp.length());
+			temp1.read(raf);
+			if(temp1.getSucursal().trim().equals(suc) && !temp1.getEliminado().equals("y")) {
+				raf.seek(i*temp1.length());
+				Cuenta[] cuentas = temp1.getCuentas();
+				for(int l = 0; l<5; l++) {
+					if(cuentas[l].getNumero()==cuenta) {
+						cuentas[l].setEliminado();
+						temp1.write(raf);
+						l=5;
+						i = n;
+						estaEliminado = true;
+					}
+				}
+			}
+		}
+		return estaEliminado;
 	}
 }

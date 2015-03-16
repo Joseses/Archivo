@@ -43,6 +43,11 @@ public class Cuenta {
 	public double getSaldo()    { return saldo; }
 	
 	public String getEliminado() { return new String( eliminado ); }
+	
+	public void setEliminado() {
+		String temp = "y";
+		eliminado[0] = temp.getBytes()[0];
+	}
 
 	/*-----------------------------------------------------------------
 	/ métodos para escribir y leer un registro
@@ -50,21 +55,13 @@ public class Cuenta {
 
 	public void read( RandomAccessFile raf ) throws IOException {
 		long fijo = raf.getFilePointer();
-		System.out.println("[CUENTA - read] Tratando de leer en posicion " +
-							fijo);
 		try{
 			raf.read( eliminado );
 			numero = raf.readInt();
 			raf.read( nombre );
 			saldo = raf.readDouble();
 		} catch (IOException e) {
-			//raf.seek(fijo+(length()));
-			//~ System.out.println("[CUENTA - read] En este espacio: ");
-			//~ e.printStackTrace();
 		}
-		System.out.println("[CUENTA - read] Se leyó en el archivo " +
-							getEliminado() + " " + getNumero() + " " + getNombre() +
-							" " + getSaldo());
 	}
     
 	public void write( RandomAccessFile raf ) throws IOException {
@@ -73,10 +70,6 @@ public class Cuenta {
 		raf.writeInt( numero );
 		raf.write( nombre );
 		raf.writeDouble( saldo );
-		System.out.println("[CUENTA - write] Se escribió en el archivo " +
-							eliminado + " " + numero + " " + nombre +
-							" " + saldo);
-		System.out.println("[CUENTA - write] El apuntador termina en " +  (raf.getFilePointer()));
 	}
 	
 	public void erase( RandomAccessFile raf) throws IOException {
@@ -86,7 +79,6 @@ public class Cuenta {
 		raf.writeInt( numero );
 		raf.write( nombre );
 		raf.writeDouble( saldo );
-		System.out.println("[REGISTRO - erase] " + getEliminado());
 	}
 }
 

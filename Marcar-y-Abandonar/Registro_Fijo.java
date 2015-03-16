@@ -93,7 +93,6 @@ public class Registro_Fijo
 		raf.writeInt( numero );
 		raf.write( nombre );
 		raf.writeDouble( saldo );
-		System.out.println("[REGISTRO - erase] " + getEliminado());
 	}
 
 }

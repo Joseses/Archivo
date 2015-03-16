@@ -93,22 +93,15 @@ public class Archivo
 	}
 	
 		public void eliminar(int p) throws IOException {    //Marcar y usar despues
-			System.out.println("[ARCHIVO - eliminar] se inicia el método con el argumento: " + p);
 			Registro_Fijo temp = new Registro_Fijo();
 			int n = (int) (raf.length() / temp.length());
-			System.out.println("[ARCHIVO - eliminar] n es: " + n);
 			raf.seek(0);
 			for(int i =0; i<n;i++) {
 				Registro_Fijo temp1 = new Registro_Fijo();
 				//~ raf.seek(i*temp.length());
 				temp1.read(raf);
-				System.out.println("[ARCHIVO - eliminar] el número de registro es: " 
-									+ temp1.getNumero() + " y buscamos " + p);
 				if(p==temp1.getNumero() && !temp1.getEliminado().equals("y")) {
 					raf.seek(i*temp1.length());
-					System.out.println("[ARCHIVO - eliminar] " + p + " " + temp1.getNumero());
-					System.out.println("[ARCHIVO - eliminar] entramos en la condición con el número "
-										+ temp1.getNumero());
 					temp1.erase(raf);
 					i = n;
 				}

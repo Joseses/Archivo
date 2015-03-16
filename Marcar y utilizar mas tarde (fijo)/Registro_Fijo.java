@@ -1,7 +1,7 @@
 /******************************************************************
 /  clase Registro
 /
-/  autor: Dr. Jos Luis Zechinelli Martini
+/  autor: Dr. José Luis Zechinelli Martini
 /******************************************************************/
 
 import java.io.*;

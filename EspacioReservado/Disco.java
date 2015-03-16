@@ -11,7 +11,7 @@ public class Disco{
 				showMenu();
 				option = sc.nextInt();
 				setMenu(option);
-			}while(option != 7);
+			}while(option != 6);
 		} catch (Exception e) {
 			System.out.println("Caracter inválido");
 			e.printStackTrace();
@@ -72,7 +72,26 @@ public class Disco{
 				System.out.println("--------------------------------------------------------------");
 				archivo.imprimirRegistros();
 			}else if(option == 4){
-				//FALTA METODO AQUI
+				System.out.println("--------------------------------------------------------------");
+				System.out.print("Introduzca la sucursal donde está el registro a eliminar: ");
+				String suc = sc.nextLine();
+				suc = suc.toUpperCase();
+				if(!archivo.existeRegistro(suc)) {
+					System.out.println("La sucursal no existe.");
+				} else {
+					System.out.print("Introduzca el número de cuenta a eliminar: ");
+					int num = sc.nextInt();
+					sc.nextLine();
+					if(archivo.eliminarCuenta(suc, num)) {
+						System.out.println("La eliminación ha sido un éxito.");
+						System.out.println("--------------------------------------------------------------");
+						System.out.println("--------------------------------------------------------------");
+					} else {
+						System.out.println("La eliminación no ha podido realizarse.");
+						System.out.println("--------------------------------------------------------------");
+						System.out.println("--------------------------------------------------------------");
+					}
+				}
 			}else if (option == 5) {
 				//FALTA METODO AQUI
 			}else if (option == 6) {
