@@ -20,13 +20,12 @@ public class Disco{
     
 	private static void showMenu(){
 		System.out.print("Con el numero correspondiente, elija una opcion del menu: "+ "\n" +
-							"1) Crear un Registro"+ "\n"+
-							"2) Eliminar un Registro"+"\n"+
+							"1) Agregar cuenta"+ "\n"+
+							"2) Eliminar una sucursal"+"\n"+
 							"3) Imprimir Todos los Registros"+"\n"+
-							"4) Agregar una cuenta"+"\n"+
-							"5) Borrar una cuenta"+"\n"+
-							"6) Buscar un Registro"+"\n"+
-							"7) Salir del programa"+"\n"+
+							"4) Borrar una cuenta"+"\n"+
+							"5) Buscar un Registro"+"\n"+
+							"6) Salir del programa"+"\n"+
 							"====== Opción: ");
 	}
     
@@ -41,28 +40,6 @@ public class Disco{
 			
 			Scanner sc = new Scanner(System.in);
 			if(option == 1){
-				System.out.println("--------------------------------------------------------------");
-				System.out.print("Introduzca el nombre de la sucursal: ");
-				String suc = sc.nextLine();
-				//~ System.out.print("Introduzca el número de cuenta: ");
-				//~ int num = sc.nextInt();
-				//~ sc.nextLine();
-				//~ System.out.print("Introduzca el nombre del titular: ");
-				//~ String nom = sc.nextLine();
-				//~ System.out.print("Introduzca la cantidad de la cuenta: ");
-				//~ double sal = sc.nextDouble();
-				registro = new Registro_Cbytes(suc);
-				archivo.insertar(registro);
-			}else if(option == 2){
-				//~ System.out.println("--------------------------------------------------------------");
-				//~ archivo.imprimirRegistros();
-				//~ System.out.print("Introduzca el numero de registro a eliminar: ");
-				//~ int num = sc.nextInt();
-				//~ archivo.eliminar(num);
-			}else if(option == 3){
-				System.out.println("--------------------------------------------------------------");
-				archivo.imprimirRegistros();
-			}else if(option == 4){
 				System.out.println("--------------------------------------------------------------");
 				System.out.print("Introduzca la sucursal a la que se asociará (si no existe se creará): ");
 				String suc = sc.nextLine();
@@ -81,7 +58,7 @@ public class Disco{
 				double sal = sc.nextDouble();
 				Cuenta cuenta = new Cuenta(num, nom, sal);
 				archivo.insertarCuenta(suc, cuenta);
-			}else if (option == 5) {
+			}else if(option == 2){
 				System.out.println("--------------------------------------------------------------");
 				System.out.print("Introduzca la sucursal que será eliminada: ");
 				String suc = sc.nextLine();
@@ -91,9 +68,14 @@ public class Disco{
 				} else {
 					archivo.eliminar(suc);
 				}
-			}else if (option == 6) {
+			}else if(option == 3){
 				System.out.println("--------------------------------------------------------------");
-			}else if(option == 7){
+				archivo.imprimirRegistros();
+			}else if(option == 4){
+				//FALTA METODO AQUI
+			}else if (option == 5) {
+				//FALTA METODO AQUI
+			}else if (option == 6) {
 				System.out.println("--------------------------------------------------------------");
 				System.out.println("Salir, Adios");
 				raf.close();
