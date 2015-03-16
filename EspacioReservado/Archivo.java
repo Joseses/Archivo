@@ -105,8 +105,8 @@ public class Archivo {
 				//System.out.println((i+1)+". " + "Registro marcado para eliminar");
 				contel++;
 			}else{
-				System.out.println( "( " + registro.getSucursal() + ", "
-									+ infoCuentas(registro, raf) + " )");
+				System.out.println( "( " + registro.getSucursal() +" )");
+				System.out.print(infoCuentas(registro, raf) + "\n");
 			}
 		 }
 		System.out.println( "Número de registros activos: " + (length-contel) );
@@ -127,10 +127,13 @@ public class Archivo {
 						System.out.println("[ARCHIVO - infocuentas] El apuntador está en " + 
 						raf.getFilePointer());
 						temp.read(raf);
-						texto = texto + temp.getNumero() + ", "
-						+ temp.getNombre() + ", "
-						+ temp.getSaldo() + ", "
-						+ temp.getEliminado() + "\n";
+						if(temp.getNumero()!=0 && temp.getSaldo()!=0 
+						&& !temp.getEliminado().equals("y")) {
+							texto = texto + temp.getNumero() + ", "
+							+ temp.getNombre() + ", "
+							+ temp.getSaldo() + ", "
+							+ temp.getEliminado() + "\n";
+						}
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
