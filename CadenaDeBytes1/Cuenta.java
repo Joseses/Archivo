@@ -54,15 +54,10 @@ public class Cuenta {
 
 	public void read( RandomAccessFile raf ) throws IOException {
 		long fijo = raf.getFilePointer();
-		System.out.println("[CUENTA - read] Tratando de leer en posicion " +
-							fijo);
 		raf.read( eliminado );
 		numero = raf.readInt();
 		raf.read( nombre );
 		saldo = raf.readDouble();
-		System.out.println("[CUENTA - read] Se leyó en el archivo " +
-							getEliminado() + " " + getNumero() + " " + getNombre() +
-							" " + getSaldo());
 	}
     
 	public void write( RandomAccessFile raf ) throws IOException {
@@ -71,20 +66,12 @@ public class Cuenta {
 		raf.writeInt( numero );
 		raf.write( nombre );
 		raf.writeDouble( saldo );
-		System.out.println("[CUENTA - write] Se escribió en el archivo " +
-							eliminado + " " + numero + " " + nombre +
-							" " + saldo);
-		System.out.println("[CUENTA - write] El apuntador termina en " +  (raf.getFilePointer()));
 	}
 	
 	public void erase( RandomAccessFile raf) throws IOException {
 		String temp = "y";
 		eliminado[0] = temp.getBytes()[0]; //Escribimos "y" para marcar el registro como eliminado
 		raf.write( eliminado );
-		//~ raf.writeInt( numero );
-		//~ raf.write( nombre );
-		//~ raf.writeDouble( saldo );
-		System.out.println("[REGISTRO - erase] " + getEliminado());
 	}
 }
 

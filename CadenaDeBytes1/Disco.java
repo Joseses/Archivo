@@ -11,7 +11,7 @@ public class Disco{
 				showMenu();
 				option = sc.nextInt();
 				setMenu(option);
-			}while(option != 7);
+			}while(option != 4);
 		} catch (Exception e) {
 			System.out.println("Caracter inválido");
 			e.printStackTrace();
@@ -20,13 +20,10 @@ public class Disco{
     
 	private static void showMenu(){
 		System.out.print("Con el numero correspondiente, elija una opcion del menu: "+ "\n" +
-							"1) Crear un Registro"+ "\n"+
+							"1) Agregar una cuenta"+ "\n"+
 							"2) Eliminar un Registro"+"\n"+
 							"3) Imprimir Todos los Registros"+"\n"+
-							"4) Agregar una cuenta"+"\n"+
-							"5) Borrar una cuenta"+"\n"+
-							"6) Buscar un Registro"+"\n"+
-							"7) Salir del programa"+"\n"+
+							"4) Salir del programa"+"\n"+
 							"====== Opción: ");
 	}
     
@@ -41,19 +38,26 @@ public class Disco{
 			
 			Scanner sc = new Scanner(System.in);
 			if(option == 1){
-				//~ System.out.println("--------------------------------------------------------------");
-				//~ System.out.print("Introduzca el nombre de la sucursal: ");
-				//~ String suc = sc.nextLine();
-				//~ System.out.print("Introduzca el número de cuenta: ");
-				//~ int num = sc.nextInt();
-				//~ sc.nextLine();
-				//~ System.out.print("Introduzca el nombre del titular: ");
-				//~ String nom = sc.nextLine();
-				//~ System.out.print("Introduzca la cantidad de la cuenta: ");
-				//~ double sal = sc.nextDouble();
-				//~ Cuenta cuenta = new Cuenta(num, nom, sal);
-				//~ registro = new Registro_Cbytes(suc, cuenta);
-				//~ archivo.insertarEn(registro);
+				System.out.println("--------------------------------------------------------------");
+				System.out.print("Introduzca la sucursal a la que se asociará (si no existe se creará): ");
+				String suc = sc.nextLine();
+				suc = suc.toUpperCase();
+				System.out.print("Introduzca el número de cuenta: ");
+				int num = sc.nextInt();
+				sc.nextLine();
+				System.out.print("Introduzca el nombre del titular: ");
+				String nom = sc.nextLine();
+				System.out.print("Introduzca la cantidad de la cuenta: ");
+				double sal = sc.nextDouble();
+				Cuenta cuenta = new Cuenta(num, nom, sal);
+				if(!archivo.existeRegistro(suc)) {
+					System.out.println("La sucursal no existe, por lo que será creada.");
+					registro = new Registro_Cbytes(suc, cuenta);
+					archivo.insertar(registro);
+				} else {
+					System.out.println("ELSE DE DISCO");
+					archivo.insertarCuenta(suc, cuenta);
+				}
 			}else if(option == 2){
 				System.out.print("Con el numero correspondiente, elija una opcion del menu: "+ "\n" +
 							"1) Eliminar sucursal"+ "\n"+
@@ -78,44 +82,19 @@ public class Disco{
 					int num = sc.nextInt();
 					sc.nextLine();
 					archivo.eliminarNum(num);
+				} else if(opcion==3) {
+					System.out.print("Introduzca el titular de la cuenta a eliminar: ");
+					String suc = sc.nextLine();
+					archivo.eliminarNom(suc);
+				} else if(opcion==4) {
+					
+				} else {
+					System.out.println("Opción inválida");
 				}
 			}else if(option == 3){
 				System.out.println("--------------------------------------------------------------");
 				archivo.imprimirRegistros();
 			}else if(option == 4){
-				System.out.println("--------------------------------------------------------------");
-				System.out.print("Introduzca la sucursal a la que se asociará (si no existe se creará): ");
-				String suc = sc.nextLine();
-				suc = suc.toUpperCase();
-				System.out.print("Introduzca el número de cuenta: ");
-				int num = sc.nextInt();
-				sc.nextLine();
-				System.out.print("Introduzca el nombre del titular: ");
-				String nom = sc.nextLine();
-				System.out.print("Introduzca la cantidad de la cuenta: ");
-				double sal = sc.nextDouble();
-				Cuenta cuenta = new Cuenta(num, nom, sal);
-				if(!archivo.existeRegistro(suc)) {
-					System.out.println("La sucursal no existe, por lo que será creada.");
-					registro = new Registro_Cbytes(suc, cuenta);
-					archivo.insertar(registro);
-				} else {
-					System.out.println("ELSE DE DISCO");
-					archivo.insertarCuenta(suc, cuenta);
-				}
-			}else if (option == 5) {
-				//~ System.out.println("--------------------------------------------------------------");
-				//~ System.out.print("Introduzca la sucursal que será eliminada: ");
-				//~ String suc = sc.nextLine();
-				//~ suc = suc.toUpperCase();
-				//~ if(!archivo.existeRegistro(suc)) {
-					//~ System.out.println("La sucursal no existe.");
-				//~ } else {
-					//~ archivo.eliminar(suc);
-				//~ }
-			}else if (option == 6) {
-				System.out.println("--------------------------------------------------------------");
-			}else if(option == 7){
 				System.out.println("--------------------------------------------------------------");
 				System.out.println("Salir, Adios");
 				raf.close();

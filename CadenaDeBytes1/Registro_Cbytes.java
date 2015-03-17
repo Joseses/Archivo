@@ -38,45 +38,6 @@ public class Registro_Cbytes {
 		finRegistro[0] = otro.getBytes()[0];
 	}
 	
-	//~ public void crearCuenta(Cuenta cuenta, RandomAccessFile raf) throws IOException {
-		//~ int p = 0;
-		//~ int x = 0;
-		//~ long fijo = raf.getFilePointer();
-		//~ System.out.println("[REGISTRO - crearcuenta] Apuntador de archivo fijo " + fijo);
-		//~ boolean hayEliminados = false;
-		//~ for(int i = 0; i<(5); i++) {
-			//~ Cuenta temp = new Cuenta();
-			//~ temp.read(raf); //Se leen 33 bytes en teoria
-			//~ if(temp.getEliminado().equals("y")) {
-				//~ x = i;
-				//~ i = 5;
-				//~ hayEliminados = true;
-				//~ System.out.println("Hay registros eliminados!");
-			//~ }
-		//~ }
-		//~ if(hayEliminados) {
-		//~ System.out.println("Efectivamente hay registros eliminados!");
-		//~ raf.seek(fijo+(x * cuenta.length()));   // inserta el nuevo registro
-		//~ cuenta.write( raf );
-		//~ } else {
-			//~ for( int i = 3; i >= p; i -- ) {    // desplazamiento de registros
-				//~ Cuenta temp = new Cuenta();
-				//~ System.out.println("[REGISTRO - crearcuenta] Apuntador de archivo en for " + 
-									//~ raf.getFilePointer());
-				//~ raf.seek( fijo+(i * temp.length()) );
-				//~ temp.read( raf );
-				//~ System.out.println("[REGISTRO - crearcuenta] Apuntador de archivo en for despues de primer lectura " + 
-									//~ raf.getFilePointer() + " y fijo es" + fijo);
-				//~ 
-				//~ raf.seek(fijo + ((i+1) * temp.length()));
-				//~ temp.write( raf );
-			//~ }
-			//~ System.out.println("[REGISTRO - crearcuenta] Por insertar la nueva cuenta " + 
-								//~ cuenta.getNombre() + ", " + cuenta.getNumero());
-			//~ raf.seek(fijo+(p * cuenta.length()) );   // inserta el nuevo registro
-			//~ cuenta.write( raf );
-		//~ }
-	//~ }
     
     /*-----------------------------------------------------------------
     / métodos getters
@@ -124,24 +85,14 @@ public class Registro_Cbytes {
 		raf.read( eliminado );
 		raf.read( sucursal );
 		raf.read( finRegistro );
-		System.out.println("[REGISTRO - read]Posición de puntero antes de entrar a while: "
-							+ raf.getFilePointer());
-		System.out.println("[REGISTRO - read] Fin de registro? "
-							+ getFinRegistro());
 		if(raf.getFilePointer()!=0) {
 			while(!getFinRegistro().equals("!")){
 				Cuenta temp = new Cuenta();
 				raf.seek(raf.getFilePointer()-1);
-				System.out.println("[REGISTRO - read] Apuntador dentro de condición "
-									+ raf.getFilePointer());
 				temp.read(raf);
 				cuentas.add(temp);
 				raf.read( finRegistro );
-				System.out.println("[REGISTRO - read] Fin de registro (while)? "
-							+ getFinRegistro());
 			}
-			System.out.println("[REGISTRO - read] Se han leído " + cuentas.size() 
-							+ " cuentas");
 		}
 		return raf.getFilePointer()-fijo;
 	}
@@ -153,8 +104,6 @@ public class Registro_Cbytes {
 			cuentas.get(i).write(raf);
 		}
 		raf.write( finRegistro );
-		System.out.println("[REGISTRO - write] Se han escrito " + cuentas.size() 
-							+ " cuentas, en la sucursal " + getSucursal());
 	}
 	
 	public void erase( RandomAccessFile raf) throws IOException {
