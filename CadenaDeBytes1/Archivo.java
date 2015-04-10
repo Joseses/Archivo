@@ -8,6 +8,7 @@
 import java.io.*;
 import java.util.*;
 
+//Comentario
 public class Archivo {
 	private RandomAccessFile raf = null;
   
